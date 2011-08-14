@@ -34,7 +34,7 @@ So what sould this template engine do:
 
 //Mason Template
 var myOldFashionTemplate = Mason({
-	target   : 'Dom Object to append' ,
+	target   : 'Dom Object to append',
 	template : 'Html for the template',
 	data	 : 'Json for the template'
 });
@@ -48,7 +48,7 @@ var myTemplete = Mason({
 	target   : 'Dom Object to append'
 })
 .fetchTemplate('/somewhere/in/my/server')
-.data(myData);
+.setData(myData);
 
 /**
 Thats a little thing better
