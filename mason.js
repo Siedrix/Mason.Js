@@ -17,7 +17,10 @@
 
 					if(attr.length > 1){
 						var value = attr[1];
-						value = value.replace(/{:(\w+)}/, data.d[path.match(/{:(\w+)}/)[1]])	
+						value = value.replace(/{:(\w+)}/, function($0, $1){
+						    return data.d[$1];
+						});
+
 						path = path.replace(/\[([#1-9A-Za-z=\/{:}]+)]/,'');
 
 						$(path).attr(attr[0],value);
@@ -57,7 +60,6 @@
 			var renderData = $.extend({},mapper,true);
 			$.extend(renderData,data.d,true);
 
-			console.log('renderData: ',renderData, data.d, mapper);
 			_.each(renderData, function(item,key){
 
 				if(_.isString(item)){
