@@ -1,4 +1,8 @@
 (function(window){
+	$.fn.mason = function(){
+		return $(this).data('mason');
+	}
+
 	function Mason(config){
 		var data = {},
 		el       = {},
@@ -52,29 +56,57 @@
 			return this;
 		};
 
+		template.setTemplate = function(t){
+			data.template = t;		
+			data.templateReady = true;	
+			template.render();
+
+			return this;
+		}
+
 		template.render    = function(){
-			if(el && el.html() == ''){
-				el.html(data.template);
+			$(data.config.target).data('mason',this);
+
+			if($.isArray(data.d)){
+				//console.log('Data is an array',data.d);
+
+				$.each(data.d,function(i,item){
+					//Yeah, i know, im making a template engine to avoid doing this
+					$(data.target).append('<div id="item-'+i+'"></div>');
+
+					var itemTemplate = Mason({
+						target   : data.target +' #item-'+i 
+					})
+					.setData(item)
+					.setTemplate(data.template)
+					.mapData(mapper);
+				});
+			}else{
+				if(el && el.html() == ''){
+					el.html(data.template);
+				}
+
+				var renderData = $.extend({},mapper,true);
+				$.extend(renderData,data.d,true);
+
+				_.each(renderData, function(item,key){
+
+					if(_.isString(item)){
+						stringMapper(key,item);
+					}else if(_.isArray(item)){
+						var parent = $('#'+key,el);
+
+						$('#'+key,el).html('');
+
+						var itemHTML = $('#'+key,el).clone();
+						_.each(item,function(element,i){
+						 	parent.append(itemHTML.clone().html(element));
+						});
+					}
+				});
 			}
 
-			var renderData = $.extend({},mapper,true);
-			$.extend(renderData,data.d,true);
-
-			_.each(renderData, function(item,key){
-
-				if(_.isString(item)){
-					stringMapper(key,item);
-				}else if(_.isArray(item)){
-					var parent = $('#'+key,el);
-
-					$('#'+key,el).html('');
-
-					var itemHTML = $('#'+key,el).clone();
-					_.each(item,function(element,i){
-					 	parent.append(itemHTML.clone().html(element));
-					});
-				}
-			});
+			
 
 			return this;
 		};
@@ -122,6 +154,8 @@
 		if(config.template){ template.fetchTemplate (config.template); }
 		if(config.data)    { template.setData       (config.data);     }
 		if(config.target)  { template.setTarget     (config.target);   }
+
+		$(data.config.target).data('mason',template);
 
 		return template;
 	}
