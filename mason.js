@@ -78,8 +78,8 @@
 						target   : data.target +' #item-'+i 
 					})
 					.setData(item)
-					.setTemplate(data.template)
-					.mapData(mapper);
+					.mapData(mapper)
+					.setTemplate(data.template);s
 				});
 			}else{
 				if(el && el.html() == ''){
@@ -131,6 +131,9 @@
 				mapper[key] = item
 			});
 
+			if(data.templateReady){
+				template.render();
+			}
 			return this;
 		};
 
