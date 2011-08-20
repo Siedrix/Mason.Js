@@ -1,10 +1,10 @@
 /**
 Mason Spec
-this is a templating mivroframwork, yes, yet an other, Influenced by this article about Weld  and the dead of the templating engines from hij1nx
+this is a templating microframework, yes, yet an other, Influenced by this article about Weld  and the dead of the templating engines from hij1nx
 https://github.com/hij1nx/weld
 http://blog.nodejitsu.com/micro-templates-are-dead
 
-There ara many good templating engines out there in the javascript microframework world that we live on.
+There are many good templating engines out there in the javascript microframework world that we live on.
 
 I have use some, all have cool features, but i allways feel that there is something missing.
 --Pure http://beebole.com/pure/#
@@ -13,13 +13,13 @@ I have use some, all have cool features, but i allways feel that there is someth
 --Mustachejs
 --jQuery Templates
 
-They can be divided in 2 big options, dom based or regex based. I preffer the Dom Based Ones, they feel more js.
+They can be divided in 2 big options, dom based or regex based. I prefer the Dom Based Ones, they feel more js.
 Chain Js offer some event handeling been done to the template, in a Dom oriented way.
 
-So the first question to solve is why an other one?
-The first reason is that templating engines in javascript should be able to be use just ones, 
-They should be use evety time data changes. 
-Most template engine give you a dom ombject, append it to the document and run.
+So the first question to solve is, why an other one?
+The first reason is that templating engines in javascript should be able to be use just ones. 
+They should be use every time data changes. 
+Most template engines give you a dom ombject, append it to the document and run.
 
 They should offer you a simple way to work above the Dom.
 
@@ -40,7 +40,7 @@ var myOldFashionTemplate = Mason({
 });
 
 /**
-Ok, this isnt anything new from what it is out there.
+Ok, this isn't anything new from what it is out there.
 But it works, and some times, we already have everything.
 **/
 
@@ -61,7 +61,7 @@ myTemplate.setData(myData);
 
 /*
 But who does it know how to map my data?
-Well, fisrt of all uses classes and ids on the html to find the information.
+Well, first of all uses classes and ids on the html to find the information.
 
 If thats to simple for your demands, you can set up a mapping function.
 */
@@ -71,7 +71,7 @@ myTemplate.mapData({
 });
 
 /**
-Yeah i steal this from the first link on the file.
+Yeah I stole this from the first link on the file.
 
 But this not that much
 **/
@@ -96,7 +96,7 @@ myTemplate.mapData({
 });
 
 /**
-	Now, who do im going to make this work, no idea, but i have a full devhouse to do it.
+	Now, who do im going to make this work, no idea, but I have a full devhouse to do it.
 	SuperHappyDevHouse MexicoCity 
 	http://shdhmc.pbworks.com/SHDH-21
 **/
