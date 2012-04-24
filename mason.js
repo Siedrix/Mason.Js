@@ -40,8 +40,8 @@
 				}
 
 			}else{
-				if($('#'+key).html() != item){
-					el.find('#'+key).html(item);
+				if($('.'+key).html() != item){
+					el.find('.'+key).html(item);
 				}
 			}
 		}
@@ -69,7 +69,6 @@
 
 			if($.isArray(data.d)){
 				//console.log('Data is an array',data.d);
-
 				$.each(data.d,function(i,item){
 					//Yeah, i know, im making a template engine to avoid doing this
 					$(data.target).append('<div id="item-'+i+'"></div>');
@@ -94,19 +93,17 @@
 					if(_.isString(item)){
 						stringMapper(key,item);
 					}else if(_.isArray(item)){
-						var parent = $('#'+key,el);
+						var parent   = $('.'+key,el),
+							itemHTML = parent.children().first().clone();
 
-						$('#'+key,el).html('');
+						parent.html('');;
 
-						var itemHTML = $('#'+key,el).clone();
 						_.each(item,function(element,i){
 						 	parent.append(itemHTML.clone().html(element));
 						});
 					}
 				});
 			}
-
-			
 
 			return this;
 		};
@@ -157,6 +154,7 @@
 		if(config.template){ template.fetchTemplate (config.template); }
 		if(config.data)    { template.setData       (config.data);     }
 		if(config.target)  { template.setTarget     (config.target);   }
+		if(config.map)     { template.mapData       (config.map);   }
 
 		$(data.config.target).data('mason',template);
 
